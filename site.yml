@@ -1,0 +1,23 @@
+- name: selenium-server
+  become: yes
+  hosts: 
+    - selenium
+  roles:
+    - common
+    - apache2
+    - php7.0
+    - mysql
+  tags:
+    - selenium
+
+- name: web-server
+  become: yes
+  hosts: 
+    - web
+  roles:
+    - common
+    - apache2
+    - php7.0
+    - mysql
+  tags:
+    - web

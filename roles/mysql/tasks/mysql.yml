@@ -1,0 +1,14 @@
+- name: install mysql-server-5.7
+  apt: name=mysql-server-5.7 state=present
+  become: yes
+
+- name: register mysql service and start
+  service: name=mysql state=started enabled=yes
+  become: yes
+
+#- name: MySQLのdbを追加
+#  mysql_db: name={{ mysql_database }} state=present
+
+- name: phpmyadmin　用の MySQLのユーザーを追加
+  mysql_user: name={{ mysql_user }} password={{ mysql_password }} priv={{ mysql_database }}.*:ALL,GRANT state=present
+

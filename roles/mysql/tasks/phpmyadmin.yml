@@ -1,0 +1,15 @@
+- name: install phpmyadmin
+  apt: name=phpmyadmin state=present
+
+- name: シンボリックリンクを貼る
+  file:
+    src: /etc/phpmyadmin/apache.conf 
+    dest: /etc/apache2/conf-enabled/phpmyadmin.conf
+    state: link
+
+#- name: phpmyadmin db file 
+#  template:
+#    src: config-db.php
+#    dest: /etc/phpmyadmin/config-db.php
+#    mode: 0644 
+#  notify: restart apache2
